@@ -3,6 +3,7 @@ const { createApp } = Vue;
 const app = createApp({
   data() {
     return {
+      apiUri: "http://localhost/TodoList/backend/api/",
       title: "My TodoList",
 
       changeMode: {
@@ -27,92 +28,99 @@ const app = createApp({
         changeText: false,
       },
 
-      //   sections: [],
+      sections: [],
 
-      sections: [
-        {
-          name: "Featured",
-          openedView: true,
-          tasks: [
-            {
-              text: "Task 1",
-              done: false,
-            },
-            {
-              text: "Task 2",
-              done: true,
-            },
-            {
-              text: "Task 3",
-              done: false,
-            },
-            {
-              text: "Task 4",
-              done: true,
-            },
-            {
-              text: "Task 5",
-              done: false,
-            },
-          ],
-        },
-        {
-          name: "Others",
-          openedView: false,
-          tasks: [
-            {
-              text: "Task 1",
-              done: false,
-            },
-            {
-              text: "Task 2",
-              done: true,
-            },
-            {
-              text: "Task 3",
-              done: false,
-            },
-            {
-              text: "Task 4",
-              done: true,
-            },
-            {
-              text: "Task 5",
-              done: false,
-            },
-          ],
-        },
-        {
-          name: "Last",
-          openedView: true,
-          tasks: [
-            {
-              text: "Task 1",
-              done: false,
-            },
-            {
-              text: "Task 2",
-              done: true,
-            },
-            {
-              text: "Task 3",
-              done: false,
-            },
-            {
-              text: "Task 4",
-              done: true,
-            },
-            {
-              text: "Task 5",
-              done: false,
-            },
-          ],
-        },
-      ],
+      // sections: [
+      //   {
+      //     name: "Featured",
+      //     openedView: true,
+      //     tasks: [
+      //       {
+      //         text: "Task 1",
+      //         done: false,
+      //       },
+      //       {
+      //         text: "Task 2",
+      //         done: true,
+      //       },
+      //       {
+      //         text: "Task 3",
+      //         done: false,
+      //       },
+      //       {
+      //         text: "Task 4",
+      //         done: true,
+      //       },
+      //       {
+      //         text: "Task 5",
+      //         done: false,
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     name: "Others",
+      //     openedView: false,
+      //     tasks: [
+      //       {
+      //         text: "Task 1",
+      //         done: false,
+      //       },
+      //       {
+      //         text: "Task 2",
+      //         done: true,
+      //       },
+      //       {
+      //         text: "Task 3",
+      //         done: false,
+      //       },
+      //       {
+      //         text: "Task 4",
+      //         done: true,
+      //       },
+      //       {
+      //         text: "Task 5",
+      //         done: false,
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     name: "Last",
+      //     openedView: true,
+      //     tasks: [
+      //       {
+      //         text: "Task 1",
+      //         done: false,
+      //       },
+      //       {
+      //         text: "Task 2",
+      //         done: true,
+      //       },
+      //       {
+      //         text: "Task 3",
+      //         done: false,
+      //       },
+      //       {
+      //         text: "Task 4",
+      //         done: true,
+      //       },
+      //       {
+      //         text: "Task 5",
+      //         done: false,
+      //       },
+      //     ],
+      //   },
+      // ],
     };
   },
 
   methods: {
+    fetchData() {
+      const endPoint = "all-tasks.php";
+      axios.get(`${this.apiUri}${endPoint}`).then((res) => {
+        this.sections = res.data;
+      });
+    },
+
     toggleOpenedView(section) {
       // # call API toggle-opensection
       // via section-index
@@ -226,8 +234,8 @@ const app = createApp({
     },
   },
 
-  mounted() {
-    console.log("JS ok");
+  created() {
+    this.fetchData();
   },
 });
 
