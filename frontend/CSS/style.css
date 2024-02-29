@@ -1,0 +1,35 @@
+/* -- RESET */
+
+/* --CUSTOM PROPS */
+
+:root {
+  --text-m: 1.5rem;
+  --space-m: 8px;
+
+  --li-margin: 1em; /* margini lista FontAwesome */
+  --li-width: 1.5em; /* markerwidth lista FontAwesome */
+
+  --main-color: rgba(255, 0, 0, 0.236);
+}
+
+/* -- DEBUG */
+
+.db {
+  background-color: rgba(255, 0, 0, 0.236);
+  border: 3px dashed black;
+  background-clip: content-box;
+  /* min-height: 50px; */
+}
+
+.db-content > * {
+  background-color: rgba(255, 0, 0, 0.236);
+  border: 2px dotted black;
+  background-clip: content-box;
+  /* min-height: 50px; */
+}
+
+.db i::after {
+  content: "ℹ️";
+}
+
+/* ---------------------------------------- */
