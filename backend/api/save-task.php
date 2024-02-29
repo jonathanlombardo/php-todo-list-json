@@ -2,7 +2,7 @@
 
 header("Content-Type: application/json");
 
-if (!empty($_POST))
+if (empty($_POST))
   exit;
 
 $section_index = $_POST["section-index"] ?? false;
